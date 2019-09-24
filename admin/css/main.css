@@ -1,0 +1,27 @@
+/**
+ * WP MOJ Problem with this Page Menu
+**/
+
+.pwtpm_social_list {
+    padding-top:15px;
+}
+.pwtpm_social_list .setting {
+    display:block;padding:1em;
+}
+.pwtpm_social_list .setting p.label_title {
+    font-size:12px;font-weight:bold;
+    display:block;margin-bottom:5px;
+}
+.pwtpm_social_list .setting label.no_bold {
+    font-weight:normal;
+}
+.pwtpm_social_list .setting label span.slim {
+    width:200px;float:left;
+    display:block;
+    margin: 1px;
+    padding: 3px;
+}
+.pwtpm_social_list .setting p.desc {
+    font-size:10px;font-style:italic;
+    text-indent:10px; text-align:left;
+}

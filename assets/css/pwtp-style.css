@@ -1,0 +1,18 @@
+/* pwtp form styles */
+#pwtp {clear:both;}
+#pwtp:after {content:''; display:block; height:0; clear:both;}
+
+/* Form anchor */
+#pwtp-anchor {clear:both;}
+
+/* Form elements */
+#pwtp .form-group button {font-family:inherit; font-size:1em;}
+
+/* Error */
+#pwtp .pwtp-error {border-color:#ff0000; color:#ff0000;}
+
+/* Hide elements */
+#pwtp .pwtp-hide {display:none;}
+
+/* Success or fail message */
+.pwtp-info {font-style:italic; font-size:1.20em;}
