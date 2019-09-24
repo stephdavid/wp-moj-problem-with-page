@@ -49,9 +49,9 @@ if ($list_submissions_setting == "yes") {
 
 	// dashboard submission columns
 	function pwtp_custom_columns( $columns ) {
-		$columns['name_column'] = esc_attr__( 'Name', 'wp-moj-problem-with-this-page' );
-		$columns['email_column'] = esc_attr__( 'Email', 'wp-moj-problem-with-this-page' );
-		$custom_order = array('cb', 'title', 'name_column', 'email_column', 'date');
+		$columns['problem_column'] = esc_attr__( 'Problem', 'wp-moj-problem-with-this-page' );
+		$columns['improvement_column'] = esc_attr__( 'Suggested Improvement', 'wp-moj-problem-with-this-page' );
+		$custom_order = array('cb', 'date', 'problem_column', 'improvement_column');
 		foreach ($custom_order as $colname) {
 			$new[$colname] = $columns[$colname];
 		}
@@ -60,26 +60,26 @@ if ($list_submissions_setting == "yes") {
     add_filter( 'manage_submission_posts_columns', 'pwtp_custom_columns', 10 );
     
 	function pwtp_custom_columns_content( $column_name, $post_id ) {
-		if ( 'name_column' == $column_name ) {
+		if ( 'problem_column' == $column_name ) {
 			$name = get_post_meta( $post_id, 'name_sub', true );
 			echo $name;
 		}
-		if ( 'email_column' == $column_name ) {
+		if ( 'improvement_column' == $column_name ) {
 			$email = get_post_meta( $post_id, 'email_sub', true );
 			echo $email;
 		}
     }
 	add_action( 'manage_submission_posts_custom_column', 'pwtp_custom_columns_content', 10, 2 );
 
-	// make name and email column sortable
+	// make problem and improvement column sortable
 	function pwtp_column_register_sortable( $columns ) {
-		$columns['name_column'] = 'name_sub';
-		$columns['email_column'] = 'email_sub';
+		$columns['problem_column'] = 'name_sub';
+		$columns['improvement_column'] = 'email_sub';
 		return $columns;
 	}
 	add_filter( 'manage_edit-submission_sortable_columns', 'pwtp_column_register_sortable' );
 
-	function pwtp_name_column_orderby( $vars ) {
+	function pwtp_problem_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'name_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -90,9 +90,9 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'pwtp_name_column_orderby' );
+	add_filter( 'request', 'pwtp_problem_column_orderby' );
 
-	function pwtp_email_column_orderby( $vars ) {
+	function pwtp_improvement_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'email_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -103,7 +103,7 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'pwtp_email_column_orderby' );
+	add_filter( 'request', 'pwtp_improvement_column_orderby' );
 }
 
 // add settings link
