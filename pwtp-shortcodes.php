@@ -38,6 +38,12 @@ function pwtp_shortcode($pwtp_atts) {
 	$sent = false;
 	$fail = false;
 
+	// get custom settings from settingspage
+	$list_submissions_setting = get_option('pwtp-setting-2');
+	$subject_setting = get_option('pwtp-setting-23');
+	$auto_reply_setting = get_option('pwtp-setting-3');
+	$anchor_setting = get_option('pwtp-setting-21');
+		
 	// include labels
 	include 'pwtp-labels.php';
 
@@ -73,6 +79,7 @@ function pwtp_shortcode($pwtp_atts) {
 
 		// include validation
 		include 'pwtp-validate.php';
+
 		// include sending and saving form submission
 		include 'pwtp-submission.php';
 	}
@@ -82,9 +89,9 @@ function pwtp_shortcode($pwtp_atts) {
 
 	// after form validation
 	if ($sent == true) {
-		return '<script type="text/javascript">window.location="'.pwtp_redirect_success().'"</script>';
+		return '<script>window.location="'.pwtp_redirect_success().'"</script>';
 	} elseif ($fail == true) {
-		return '<script type="text/javascript">window.location="'.pwtp_redirect_error().'"</script>';
+		return '<script>window.location="'.pwtp_redirect_error().'"</script>';
 	}
 
 	// display form or the result of submission
@@ -129,14 +136,18 @@ function pwtp_widget_shortcode($pwtp_atts) {
 
 	// initialize variables
 	$form_data = array(
-		'form_name' => '',
-		'form_email' => '',
 		'form_problem' => '',
-		'form_problem' => ''
+		'form_improvement' => ''
 	);
 	$error = false;
 	$sent = false;
 	$fail = false;
+
+
+	// get custom settings from settingspage
+	$list_submissions_setting = get_option('pwtp-setting-2');
+	$subject_setting = get_option('pwtp-setting-23');
+	$anchor_setting = get_option('pwtp-setting-21');
 
 	// include labels
 	include 'pwtp-labels.php';
@@ -200,4 +211,3 @@ function pwtp_widget_shortcode($pwtp_atts) {
 		}
 	}	   		
 }
-add_shortcode('contact-widget', 'pwtp_widget_shortcode');

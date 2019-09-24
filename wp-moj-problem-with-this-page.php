@@ -26,7 +26,7 @@ function pwtp_assets() {
 add_action('wp_enqueue_scripts', 'pwtp_assets');
 
 // form submissions
-//$list_submissions_setting = get_option('pwtp-setting-2');
+$list_submissions_setting = get_option('pwtp-setting-2');
 if ($list_submissions_setting == "yes") {
 	// create submission post type
 	function pwtp_custom_postype() {

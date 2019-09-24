@@ -20,6 +20,9 @@ function pwtp_admin_init() {
 	add_settings_field( 'pwtp-field-1', esc_attr__( 'Uninstall', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_1', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting', array('sanitize_callback' => 'sanitize_key') );
 
+	add_settings_field( 'pwtp-field-2', esc_attr__( 'Submissions', 'very-simple-contact-form' ), 'pwtp_field_callback_2', 'pwtp-general', 'pwtp-general-section' );
+	register_setting( 'pwtp-general-options', 'pwtp-setting-2', array('sanitize_callback' => 'sanitize_key') );
+	
 	add_settings_section( 'pwtp-label-section', esc_attr__( 'Labels', 'wp-moj-problem-with-this-page' ), '', 'pwtp-label' );
 
 	add_settings_field( 'pwtp-field-7', esc_attr__( 'What were you doing and what went wrong? (This information must be provided)', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_7', 'pwtp-label', 'pwtp-label-section' );
@@ -53,6 +56,14 @@ function pwtp_field_callback_1() {
 	?>
 	<input type='hidden' name='pwtp-setting' value='no'>
 	<label><input type='checkbox' name='pwtp-setting' <?php checked( $value, 'yes' ); ?> value='yes'> <?php esc_attr_e( 'Do not delete form submissions and settings.', 'wp-moj-problem-with-this-page' ); ?></label>
+	<?php
+}
+
+function pwtp_field_callback_2() {
+	$value = esc_attr( get_option( 'pwtp-setting-2' ) );
+	?>
+	<input type='hidden' name='pwtp-setting-2' value='no'>
+	<label><input type='checkbox' name='pwtp-setting-2' <?php checked( $value, 'yes' ); ?> value='yes'> <?php esc_attr_e( 'List form submissions in dashboard.', 'very-simple-contact-form' ); ?></label>
 	<?php
 }
 
