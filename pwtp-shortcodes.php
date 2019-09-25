@@ -29,8 +29,8 @@ function pwtp_shortcode($pwtp_atts) {
 
 	// initialize variables
 	$form_data = array(
-		'form_name' => '',
-		'form_email' => '',
+	//	'form_name' => '',
+	//	'form_email' => '',
 		'form_problem' => '',
 		'form_improvement' => ''
 	);
