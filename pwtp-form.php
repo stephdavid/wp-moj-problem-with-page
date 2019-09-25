@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$email_form = $_POST['value'] ?? '';
 // Register and enqueue plugin scripts
 function pwtp_scripts() {
     wp_register_script( 'wp-moj-problem-with-page-scripts', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true );
@@ -12,6 +13,7 @@ function pwtp_scripts() {
 }
 add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
 
+$pwtp_atts = $_POST['value'] ?? '';
 // contact form
 $email_form = '<form  getinfo() id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 	<div class="form-group pwtp-problem-group">

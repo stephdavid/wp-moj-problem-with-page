@@ -27,6 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$problem_label = $pwtp_atts['label_problem'];
 	}
 
+	$improvement_label = $_POST['value'] ?? '';
 	// improvement label
 	$value = $improvement_label;
 	if (empty($pwtp_atts['label_improvement'])) {
@@ -51,6 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$submit_label = $pwtp_atts['label_submit'];
 	}
 
+	$error_problem_label = $_POST['value'] ?? '';
 	// error problem label
 	$value = $error_problem_label;
 	if (empty($pwtp_atts['error_problem'])) {
