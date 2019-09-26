@@ -154,7 +154,6 @@ function pwtp_redirect_error() {
 	return $url_with_param;
 }
 
-
 // form anchor
 function pwtp_anchor_footer() {
 	$anchor_setting = get_option('pwtp-setting-21');
