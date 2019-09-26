@@ -71,8 +71,8 @@ function pwtp_shortcode($pwtp_atts) {
 			$problem_value = '';
 		}
 		$post_data = array(
-			'form_name' => sanitize_text_field($_POST['pwtp_name']),
-			'form_email' => sanitize_email($_POST['pwtp_email']),
+			//'form_name' => sanitize_text_field($_POST['pwtp_name']),
+			//'form_email' => sanitize_email($_POST['pwtp_email']),
 			'form_problem' => $problem_value,
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
 		);
@@ -173,8 +173,8 @@ function pwtp_widget_shortcode($pwtp_atts) {
 			$problem_value = '';
 		}
 		$post_data = array(
-			'form_name' => sanitize_text_field($_POST['pwtp_name']),
-			'form_email' => sanitize_email($_POST['pwtp_email']),
+			//'form_name' => sanitize_text_field($_POST['pwtp_name']),
+			//'form_email' => sanitize_email($_POST['pwtp_email']),
 			'form_problem' => $problem_value,
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
 		);
