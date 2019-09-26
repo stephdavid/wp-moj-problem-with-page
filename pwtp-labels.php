@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	// get custom labels from settingspage
 	$problem_label = get_option('pwtp-setting-7');
-	$message_label = get_option('pwtp-setting-9');
+	$improvement_label = get_option('pwtp-setting-9');
 	$submit_label = get_option('pwtp-setting-10');
 	$error_message_label = get_option('pwtp-setting-12');
 
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$value = $server_error_message;
 	if (empty($pwtp_atts['message_error'])) {
 		if (empty($value)) {
-			$server_error_message= __( 'Error! Could not send form. Please try again later, or get in touch via our contact page.', 'wp-moj-problem-with-this-page' );
+			$server_error_message= __( 'Sorry! Could not send form. Please try again later, or get in touch via our contact page.', 'wp-moj-problem-with-this-page' );
 		} else {
 			$server_error_message = $value;
 		}
