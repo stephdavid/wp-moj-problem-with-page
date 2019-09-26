@@ -63,6 +63,7 @@ function pwtp_shortcode($pwtp_atts) {
 	}
 
 	// processing form
+	$problem_setting = null;
 	if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
 		// sanitize input
 		if ($problem_setting != "yes") {
