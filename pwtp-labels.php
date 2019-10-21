@@ -3,30 +3,25 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
-	// get custom labels from settingspage
+	// initialise labels
 	$problem_label = get_option('pwtp-setting-7');
 	$improvement_label = get_option('pwtp-setting-9');
 	$submit_label = get_option('pwtp-setting-10');
 	$error_message_label = get_option('pwtp-setting-12');
-
-	// get custom messages from settingspage
+	// initialise messages
 	$server_error_message = get_option('pwtp-setting-15');
 	$thank_you_message = get_option('pwtp-setting-16');
-
-
 	// problem label
 	$value = $problem_label;
 	if (empty($pwtp_atts['label_problem'])) {
 		if (empty($value)) {
-			$problem_label = __( 'What were you doing and what went wrong? (This information must be provided)', 'wp-moj-problem-with-this-page' );
+			$problem_label = __( 'What were you doing and what went wrong? (This information must be provided) Please don’t include personal or financial information like your name, National Insurance number or credit card details', 'wp-moj-problem-with-this-page' );
 		} else {
 			$problem_label = $value;
 		}
 	} else {
 		$problem_label = $pwtp_atts['label_problem'];
 	}
-
 	$improvement_label = $_POST['value'] ?? '';
 	// improvement label
 	$value = $improvement_label;
@@ -39,7 +34,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$improvement_label = $pwtp_atts['label_improvement'];
 	}
-
 	// submit label
 	$value = $submit_label;
 	if (empty($pwtp_atts['label_submit'])) {
@@ -51,7 +45,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$submit_label = $pwtp_atts['label_submit'];
 	}
-
 	$error_problem_label = $_POST['value'] ?? '';
 	// error problem label
 	$value = $error_problem_label;
@@ -64,7 +57,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$error_problem_label = $pwtp_atts['error_problem'];
 	}
-
 	// server error message
 	$value = $server_error_message;
 	if (empty($pwtp_atts['message_error'])) {
@@ -76,7 +68,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$server_error_message = $pwtp_atts['message_error'];
 	}
-
 	// thank you message
 	$value = $thank_you_message;
 	if (empty($pwtp_atts['message_success'])) {
