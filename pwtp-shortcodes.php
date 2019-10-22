@@ -40,9 +40,9 @@ function pwtp_shortcode($pwtp_atts) {
 	$sent = false;
 	$fail = false;
 
-	// get custom settings from settingspage
+	// initialise settings
 	$list_submissions_setting = get_option('pwtp-setting-2');
-	$subject_setting = get_option('pwtp-setting-23');
+
 	$auto_reply_setting = get_option('pwtp-setting-3');
 	$anchor_setting = get_option('pwtp-setting-21');
 		
@@ -65,44 +65,28 @@ function pwtp_shortcode($pwtp_atts) {
 	}
 
 		// processing form
-		if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset($_POST['pwtp_subject']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
-			// sanitize input
-			if ($subject_setting != "yes") {
-				$subject_value = sanitize_text_field($_POST['pwtp_subject']);
-			} else {
-				$subject_value = '';
-			}
-		//	if($privacy_setting == "yes") {
-		//		$privacy_value = sanitize_key($_POST['pwtp_privacy']);
-		//	} else {
-		//		$privacy_value = '';
-		//	}
+		if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
 
-		$post_data = array(
-			'form_name' => sanitize_text_field($_POST['pwtp_name']),
-			'form_email' => sanitize_email($_POST['pwtp_email']),
-			'form_subject' => $subject_value,
-			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
-			//'form_problem' => $problem_value,
-			'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
-			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
-		);
+			$post_data = array(
+				'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
+				'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
+			);
 
-		// include validation
-		include 'pwtp-validate.php';
+			// include validation
+			include 'pwtp-validate.php';
 
-		// include sending and saving form submission
-		include 'pwtp-submission.php';
-	}
+			// include sending and saving form submission
+			include 'pwtp-submission.php';
+		}
 
-	// include form
-	include 'pwtp-form.php';
+		// include form
+		include 'pwtp-form.php';
 
-	// after form validation
-	if ($sent == true) {
-		return '<script>window.location="'.pwtp_redirect_success().'"</script>';
-	} elseif ($fail == true) {
-		return '<script>window.location="'.pwtp_redirect_error().'"</script>';
+		// after form validation
+		if ($sent == true) {
+			return '<script>window.location="'.pwtp_redirect_success().'"</script>';
+		} elseif ($fail == true) {
+			return '<script>window.location="'.pwtp_redirect_error().'"</script>';
 	}
 
 	// display form or the result of submission
@@ -161,8 +145,8 @@ function pwtp_widget_shortcode($pwtp_atts) {
 
 	// get custom settings from settingspage
 	$list_submissions_setting = get_option('pwtp-setting-2');
-	$subject_setting = get_option('pwtp-setting-23');
-	$anchor_setting = get_option('pwtp-setting-21');
+
+	//$anchor_setting = get_option('pwtp-setting-21');
 
 	// include labels
 	include 'pwtp-labels.php';
@@ -181,17 +165,7 @@ function pwtp_widget_shortcode($pwtp_atts) {
 
 	// processing form
 	if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_widget_send']) && isset( $_POST['pwtp_widget_nonce'] ) && wp_verify_nonce( $_POST['pwtp_widget_nonce'], 'pwtp_widget_nonce_action' ) ) {
-		// sanitize input
-		if ($subject_setting != "yes") {
-			$subject_value = sanitize_text_field($_POST['pwtp_subject']);
-		} else {
-			$subject_value = '';
-		}
-		//if($privacy_setting == "yes") {
-		//	$privacy_value = sanitize_key($_POST['pwtp_privacy']);
-		//} else {
-		//	$privacy_value = '';
-	//	}
+
 		$post_data = array(
 			'form_name' => sanitize_text_field($_POST['pwtp_name']),
 			'form_email' => sanitize_email($_POST['pwtp_email']),

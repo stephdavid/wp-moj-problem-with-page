@@ -35,9 +35,6 @@ if ($error == false) {
 	if (!empty($pwtp_atts['subject'])) {
 		$subject = $pwtp_atts['subject'];
 	}
-	elseif ($subject_setting != "yes") {
-		$subject = "(".$prefix.") " . $form_data['form_subject'];
-	}
 	else {
 		$subject = $prefix;
 	}
