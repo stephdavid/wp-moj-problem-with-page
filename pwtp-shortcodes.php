@@ -13,13 +13,9 @@ function pwtp_shortcode($pwtp_atts) {
 		'from_header' => pwtp_from_header(),
 		'prefix_problem' => '',
 		'problem' => '',
-		'label_name' => '',
-		'label_email' => '',
 		'label_problem' => '',
 		'label_improvement' => '',
 		'label_submit' => '',
-		'error_name' => '',
-		'error_email' => '',
 		'error_problem' => '',
 		'error_message' => '',
 		'message_success' => '',
@@ -29,12 +25,10 @@ function pwtp_shortcode($pwtp_atts) {
 
 	// initialize variables
 	$form_data = array(
-		'form_name' => '',
-		'form_email' => '',
-		'form_subject' => '',
 		'form_problem' => '',
-		'form_message' => '',
-		'form_improvement' => ''
+		'form_improvement' => '',
+		'form_message' => ''
+
 	);
 	$error = false;
 	$sent = false;
@@ -42,7 +36,6 @@ function pwtp_shortcode($pwtp_atts) {
 
 	// initialise settings
 	$list_submissions_setting = get_option('pwtp-setting-2');
-
 	$auto_reply_setting = get_option('pwtp-setting-3');
 	$anchor_setting = get_option('pwtp-setting-21');
 		

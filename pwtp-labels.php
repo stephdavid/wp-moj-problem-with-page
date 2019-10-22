@@ -4,32 +4,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 	// initialise labels
-	$name_label = get_option('pwtp-setting-5');
-	$email_label = get_option('pwtp-setting-6');
 	$problem_label = get_option('pwtp-setting-7');
 	$improvement_label = get_option('pwtp-setting-9');
 	$submit_label = get_option('pwtp-setting-10');
-	$error_name_label = get_option('pwtp-setting-11');
-	$error_subject_label = get_option('pwtp-setting-20');
+	$error_problem_label = get_option('pwtp-setting-20');
 	$error_improvement_label = get_option('pwtp-setting-12');
-	$error_email_label = get_option('pwtp-setting-13');
+
 	// initialise messages
 	$server_error_message = get_option('pwtp-setting-15');
 	$thank_you_message = get_option('pwtp-setting-16');
 	$auto_reply_message = get_option('pwtp-setting-17');
-	
-	// name label
-	$value = $name_label;
-	if (empty($pwtp_atts['label_name'])) {
-		if (empty($value)) {
-			$name_label = __( 'Name', 'moj-problem-with-this-page' );
-		} else {
-			$name_label = $value;
-		}
-	} else {
-		$name_label = $pwtp_atts['label_name'];
-	}
-	
+
 	// problem label
 	$value = $problem_label;
 	if (empty($pwtp_atts['label_problem'])) {
@@ -41,35 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$problem_label = $pwtp_atts['label_problem'];
 	}
+	
 	$improvement_label = $_POST['value'] ?? '';
 	// improvement label
 	$value = $improvement_label;
 	if (empty($pwtp_atts['label_improvement'])) {
 		if (empty($value)) {
 			$improvement_label = __( 'What could we improve?', 'moj-problem-with-this-page' );
-		} else {
-			$improvement_label = $value;
-		}
-	} else {
-		$improvement_label = $pwtp_atts['label_improvement'];
-	}
-	// email label
-	$value = $email_label;
-	if (empty($pwtp_atts['label_email'])) {
-		if (empty($value)) {
-			$email_label = __( 'Email', 'moj-problem-with-this-page' );
-		} else {
-			$email_label = $value;
-		}
-	} else {
-		$email_label = $pwtp_atts['label_email'];
-	}
-
-	// improvement label
-	$value = $improvement_label;
-	if (empty($pwtp_atts['label_improvement'])) {
-		if (empty($value)) {
-			$improvement_label = __( 'Improvement', 'moj-problem-with-this-page' );
 		} else {
 			$improvement_label = $value;
 		}
@@ -90,18 +53,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	}
 	$error_problem_label = $_POST['value'] ?? '';
 
-	// error name label
-	$value = $error_name_label;
-	if (empty($pwtp_atts['error_name'])) {
-		if (empty($value)) {
-			$error_name_label = __( 'Please enter at least 2 characters', 'moj-problem-with-this-page' );
-		} else {
-			$error_name_label = $value;
-		}
-	} else {
-		$error_name_label = $pwtp_atts['error_name'];
-	}
-
 	// error problem label
 	$value = $error_problem_label;
 	if (empty($pwtp_atts['error_problem'])) {
@@ -112,42 +63,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 	} else {
 		$error_problem_label = $pwtp_atts['error_problem'];
-	}
-
-	// error email label
-	$value = $error_email_label;
-	if (empty($pwtp_atts['error_email'])) {
-		if (empty($value)) {
-			$error_email_label = __( 'Please enter a valid email', 'moj-problem-with-this-page' );
-		} else {
-			$error_email_label = $value;
-		}
-	} else {
-		$error_email_label = $pwtp_atts['error_email'];
-	}
-
-	// error subject label
-	$value = $error_subject_label;
-	if (empty($pwtp_atts['error_subject'])) {
-		if (empty($value)) {
-			$error_subject_label = __( 'Please enter at least 2 characters', 'moj-problem-with-this-page' );
-		} else {
-			$error_subject_label = $value;
-		}
-	} else {
-		$error_subject_label = $pwtp_atts['error_subject'];
-	}
-
-	// error improvement label
-	$value = $error_improvement_label;
-	if (empty($pwtp_atts['error_improvement'])) {
-		if (empty($value)) {
-			$error_improvement_label = __( 'Please enter at least 10 characters', 'moj-problem-with-this-page' );
-		} else {
-			$error_improvement_label = $value;
-		}
-	} else {
-		$error_improvement_label = $vscf_atts['error_improvement'];
 	}
 
 	// server error message
