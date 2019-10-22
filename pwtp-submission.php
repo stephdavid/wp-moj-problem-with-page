@@ -52,22 +52,20 @@ if ($error == false) {
 				$post_id = wp_insert_post($pwtp_post_information);
 	}
 	// mail
-	$content = $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_improvement'] . "\r\n\r\n";
+	$content = $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'] . "\r\n\r\n";
 	$headers = "Content-Type: text/plain; charset=UTF-8" . "\r\n";
-	$headers .= "From: ".$form_data['form_name']." <".$from.">" . "\r\n";
-	$headers .= "Reply-To: <".$form_data['form_email'].">" . "\r\n";
-	$auto_reply_content = $reply_message . "\r\n\r\n" . $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_improvement'];
+	$headers .= "Problem: <".$form_data['form_problem'].">" . "\r\n";
+	$headers .= "Improvement: <".$form_data['form_improvement'].">" . "\r\n";
+	$auto_reply_content = $reply_message . "\r\n\r\n" . $form_data['form_name'] . "\r\n\r\n" . $form_data['form_email'] . "\r\n\r\n" . $form_data['form_message'];
 	$auto_reply_headers = "Content-Type: text/plain; charset=UTF-8" . "\r\n";
 	$auto_reply_headers .= "From: ".$blog_name." <".$from.">" . "\r\n";
-	$auto_reply_headers .= "Reply-To: <".$pwtp_atts['email_to'].">" . "\r\n";
 
 	if( wp_mail(esc_attr($to), wp_strip_all_tags($subject), $content, $headers) ) {
 		if ($auto_reply_setting == "yes") {
 			wp_mail($form_data['form_email'], wp_strip_all_tags($subject), $auto_reply_content, $auto_reply_headers);
 		}
 		$sent = true;
-	} 
-	else {
+	} else {
 		$fail = true;
 	}
 }

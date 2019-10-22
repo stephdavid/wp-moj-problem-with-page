@@ -8,7 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$email_label = get_option('pwtp-setting-6');
 	$problem_label = get_option('pwtp-setting-7');
 	$improvement_label = get_option('pwtp-setting-9');
-	$subject_label = get_option('pwtp-setting-23');
 	$submit_label = get_option('pwtp-setting-10');
 	$error_name_label = get_option('pwtp-setting-11');
 	$error_subject_label = get_option('pwtp-setting-20');
@@ -64,18 +63,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 	} else {
 		$email_label = $pwtp_atts['label_email'];
-	}
-
-	// subject label
-	$value = $subject_label;
-	if (empty($pwtp_atts['label_subject'])) {
-		if (empty($value)) {
-			$subject_label = __( 'Subject', 'moj-problem-with-this-page' );
-		} else {
-			$subject_label = $value;
-		}
-	} else {
-		$subject_label = $pwtp_atts['label_subject'];
 	}
 
 	// improvement label
