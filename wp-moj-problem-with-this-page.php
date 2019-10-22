@@ -79,7 +79,7 @@ if ($list_submissions_setting == "yes") {
 	}
 	add_filter( 'manage_edit-submission_sortable_columns', 'pwtp_column_register_sortable' );
 
-	function pwtp_problem_column_orderby( $vars ) {
+	function pwtp_name_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'name_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -90,9 +90,9 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'pwtp_problem_column_orderby' );
+	add_filter( 'request', 'pwtp_name_column_orderby' );
 
-	function pwtp_improvement_column_orderby( $vars ) {
+	function pwtp_email_column_orderby( $vars ) {
 		if(is_admin()) {
 			if ( isset( $vars['orderby'] ) && 'email_sub' == $vars['orderby'] ) {
 				$vars = array_merge( $vars, array(
@@ -103,7 +103,7 @@ if ($list_submissions_setting == "yes") {
 		}
 		return $vars;
 	}
-	add_filter( 'request', 'pwtp_improvement_column_orderby' );
+	add_filter( 'request', 'pwtp_email_column_orderby' );
 }
 
 // add settings link

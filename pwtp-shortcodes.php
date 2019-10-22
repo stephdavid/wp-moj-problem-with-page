@@ -29,9 +29,11 @@ function pwtp_shortcode($pwtp_atts) {
 
 	// initialize variables
 	$form_data = array(
-	//	'form_name' => '',
-	//	'form_email' => '',
+		'form_name' => '',
+		'form_email' => '',
+		'form_subject' => '',
 		'form_problem' => '',
+		'form_message' => '',
 		'form_improvement' => ''
 	);
 	$error = false;
@@ -62,19 +64,27 @@ function pwtp_shortcode($pwtp_atts) {
 		$anchor_end = '';
 	}
 
-	// processing form
-	$problem_setting = null;
-	if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
-		// sanitize input
-		if ($problem_setting != "yes") {
-			$problem_value = sanitize_text_field($_POST['pwtp_problem']);
-		} else {
-			$problem_value = '';
-		}
+		// processing form
+		if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset($_POST['pwtp_subject']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
+			// sanitize input
+			if ($subject_setting != "yes") {
+				$subject_value = sanitize_text_field($_POST['pwtp_subject']);
+			} else {
+				$subject_value = '';
+			}
+		//	if($privacy_setting == "yes") {
+		//		$privacy_value = sanitize_key($_POST['pwtp_privacy']);
+		//	} else {
+		//		$privacy_value = '';
+		//	}
+
 		$post_data = array(
-			//'form_name' => sanitize_text_field($_POST['pwtp_name']),
-			//'form_email' => sanitize_email($_POST['pwtp_email']),
-			'form_problem' => $problem_value,
+			'form_name' => sanitize_text_field($_POST['pwtp_name']),
+			'form_email' => sanitize_email($_POST['pwtp_email']),
+			'form_subject' => $subject_value,
+			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
+			//'form_problem' => $problem_value,
+			'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
 		);
 
@@ -137,8 +147,12 @@ function pwtp_widget_shortcode($pwtp_atts) {
 
 	// initialize variables
 	$form_data = array(
+		'form_name' => '',
+		'form_email' => '',
 		'form_problem' => '',
-		'form_improvement' => ''
+		'form_improvement' => '',
+		'form_message' => '',
+		'form_subject' => ''
 	);
 	$error = false;
 	$sent = false;
@@ -168,18 +182,24 @@ function pwtp_widget_shortcode($pwtp_atts) {
 	// processing form
 	if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_widget_send']) && isset( $_POST['pwtp_widget_nonce'] ) && wp_verify_nonce( $_POST['pwtp_widget_nonce'], 'pwtp_widget_nonce_action' ) ) {
 		// sanitize input
-		if ($problem_setting != "yes") {
-			$problem_value = sanitize_text_field($_POST['pwtp_problem']);
+		if ($subject_setting != "yes") {
+			$subject_value = sanitize_text_field($_POST['pwtp_subject']);
 		} else {
-			$problem_value = '';
+			$subject_value = '';
 		}
+		//if($privacy_setting == "yes") {
+		//	$privacy_value = sanitize_key($_POST['pwtp_privacy']);
+		//} else {
+		//	$privacy_value = '';
+	//	}
 		$post_data = array(
-			//'form_name' => sanitize_text_field($_POST['pwtp_name']),
-			//'form_email' => sanitize_email($_POST['pwtp_email']),
+			'form_name' => sanitize_text_field($_POST['pwtp_name']),
+			'form_email' => sanitize_email($_POST['pwtp_email']),
+			'form_subject' => $subject_value,
+			'form_message' => sanitize_textarea_field($_POST['pwtp_message']),
 			'form_problem' => $problem_value,
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
 		);
-
 		// include validation
 		include 'pwtp-validate.php';
 

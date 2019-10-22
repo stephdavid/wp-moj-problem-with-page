@@ -14,16 +14,28 @@ add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
 
 // contact form
 	$email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
+	<div class="form-group pwtp-name-group">
+		<label for="pwtp_name">'.esc_attr($name_label).': <span class="'.(isset($error_class['form_name']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_name_label).'</span></label>
+		<input type="text" name="pwtp_name" id="pwtp_name" '.(isset($error_class['form_name']) ? ' class="form-control pwtp-error"' : ' class="form-control"').' value="'.esc_attr($form_data['form_name']).'" />
+	</div>
 	<div class="form-group pwtp-problem-group">
 		<label for="pwtp_problem">'.esc_attr($problem_label).': <span class="'.(isset($error_class['form_problem']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_problem_label).'</span></label>
 		<textarea name="pwtp_problem" id="pwtp_problem" rows="20" '.(isset($error_class['form_problem']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_problem']).'</textarea>
-		</div>
-
+	</div>
+	<div class="form-group pwtp-email-group">
+	<label for="pwtp_email">'.esc_attr($email_label).': <span class="'.(isset($error_class['form_email']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_email_label).'</span></label>
+	<input type="email" name="pwtp_email" id="pwtp_email" '.(isset($error_class['form_email']) ? ' class="form-control pwtp-error"' : ' class="form-control"').' value="'.esc_attr($form_data['form_email']).'" />
+	</div>
 	<div class="form-group pwtp-improvement-group">
-		<label for="pwtp_improvement">'.esc_attr($improvement_label).' <span class="'.(isset($error_class['form_improvement']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_message_label).'</span></label>
+		<label for="pwtp_improvement">'.esc_attr($improvement_label).' <span class="'.(isset($error_class['form_improvement']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_improvement_label).'</span></label>
 		<textarea name="pwtp_improvement" id="pwtp_improvement" rows="20" '.(isset($error_class['form_improvement']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_improvement']).'</textarea>
 	</div>
-
+	'. (($subject_setting != "yes") ? '
+	<div class="form-group pwtp-subject-group">
+		<label for="pwtp_subject">'.esc_attr($subject_label).': <span class="'.(isset($error_class['form_subject']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_subject_label).'</span></label>
+		<input type="text" name="pwtp_subject" id="pwtp_subject" '. (isset($error_class['form_subject']) ? ' class="form-control pwtp-error"' : ' class="form-control"').' value="'.esc_attr($form_data['form_subject']).'" />
+	</div>
+' : '') .'
 	<div class="form-group pwtp-hide">
 		'.$pwtp_nonce_field.'
 	</div>

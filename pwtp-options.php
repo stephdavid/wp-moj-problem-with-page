@@ -18,6 +18,9 @@ function pwtp_admin_init() {
 	add_settings_field( 'pwtp-field-22', esc_attr__( 'Stakeholder/Administrator Email', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_22', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting-22', array('sanitize_callback' => 'sanitize_email') );
 
+	add_settings_field( 'pwtp-field-23', esc_attr__( 'Subject', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_23', 'pwtp-general', 'pwtp-general-section' );
+	register_setting( 'pwtp-general-options', 'pwtp-setting-23', array('sanitize_callback' => 'sanitize_email') );
+
 	add_settings_field( 'pwtp-field-1', esc_attr__( 'Uninstall', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_1', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting', array('sanitize_callback' => 'sanitize_key') );
 
@@ -46,6 +49,14 @@ function pwtp_field_callback_2() {
 	?>
 	<input type='hidden' name='pwtp-setting-2' value='no'>
 	<label><input type='checkbox' name='pwtp-setting-2' <?php checked( $value, 'yes' ); ?> value='yes'> <?php esc_attr_e( 'List form submissions in dashboard.', 'wp-moj-problem-with-this-page' ); ?></label>
+	<?php
+}
+
+function pwtp_field_callback_23() {
+	$value = esc_attr( get_option( 'pwtp-setting-23' ) );
+	?>
+	<input type='hidden' name='pwtp-setting-23' value='no'>
+	<label><input type='checkbox' name='pwtp-setting-23' <?php checked( $value, 'yes' ); ?> value='yes'> <?php esc_attr_e( 'Disable subject field.', 'wp-moj-problem-with-this-page' ); ?></label>
 	<?php
 }
 
