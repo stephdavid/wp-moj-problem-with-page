@@ -28,6 +28,7 @@ function pwtp_shortcode($pwtp_atts) {
 	$error = false;
 	$sent = false;
 	$fail = false;
+
 	// initialise settings
 	$list_submissions_setting = get_option('pwtp-setting-2');
 	$anchor_setting = get_option('pwtp-setting-21');
@@ -49,7 +50,8 @@ function pwtp_shortcode($pwtp_atts) {
 	if (($_SERVER['REQUEST_METHOD'] == 'POST') && isset($_POST['pwtp_send']) && isset( $_POST['pwtp_nonce'] ) && wp_verify_nonce( $_POST['pwtp_nonce'], 'pwtp_nonce_action' ) ) {
 		$post_data = array(
 			'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
-			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement'])
+			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
+			'prev_url' => $_POST['prev_url']
 		);
 		// include validation
 		include 'pwtp-validate.php';

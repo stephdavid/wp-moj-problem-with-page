@@ -43,6 +43,16 @@ function pwtp_from_header() {
 	}
 }
 
+// get previous page user navigated from
+function pwtp_get_the_prev_url() {
+	if (isset($_SERVER['HTTP_REFERER']))
+	 {
+		$prev_url = $_SERVER['HTTP_REFERER'];
+		$id_block = substr($prev_url, strpos($prev_url, "?p=")+1);
+		$url = substr($id_block, 0, strpos($id_block, "/"));
+	}
+}
+
 // redirect if sending succeeded
 function pwtp_redirect_success() {
 	$current_url = $_SERVER['REQUEST_URI'];

@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
 // Register and enqueue plugin scripts
 function pwtp_scripts() {
     wp_register_script('wp-moj-problem-with-page-scripts', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
@@ -25,12 +24,11 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 <div class="form-group pwtp-hide">
 	'.$pwtp_nonce_field.'
 </div>
-
 <div class="form-group pwtp-submit-group">
 	<button type="submit" name="'.$submit_name_id.'" id="'.$submit_name_id.'" class="btn btn-primary">'.esc_attr($submit_label).'</button>
 </div>
-	
-	<input type="hidden" id="url" name="url" value="">
+
+	<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'];'">
 	<input type="hidden" id="browser" name="browser" value="">
 	<input type="hidden" name="version" id="version" value="">
 	<input type="hidden" id="res" name="res" value="">

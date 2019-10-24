@@ -15,6 +15,9 @@ function pwtp_admin_init() {
 	// General
 	add_settings_section( 'pwtp-general-section', esc_attr__( 'General', 'wp-moj-problem-with-this-page' ), '', 'pwtp-general' );
 
+	add_settings_field( 'pwtp-field-5', esc_attr__( 'Stakeholder/Administrator Name', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_5', 'pwtp-general', 'pwtp-general-section' );
+	register_setting( 'pwtp-general-options', 'pwtp-setting-5', array('sanitize_callback' => 'sanitize_email') );
+
 	add_settings_field( 'pwtp-field-22', esc_attr__( 'Stakeholder/Administrator Email', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_22', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting-22', array('sanitize_callback' => 'sanitize_email') );
 
@@ -23,6 +26,12 @@ function pwtp_admin_init() {
 
 }
 add_action( 'admin_init', 'pwtp_admin_init' );
+
+function pwtp_field_callback_5() {
+	$placeholder = esc_attr( get_option( 'admin_name' ) );
+	$value = esc_attr( get_option( 'pwtp-setting-5' ) );
+	echo "<input type='text' size='40' name='pwtp-setting-5' placeholder='$placeholder' value='$value' />";
+}
 
 function pwtp_field_callback_22() {
 	$placeholder = esc_attr( get_option( 'admin_email' ) );
