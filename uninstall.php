@@ -61,6 +61,3 @@ if ( $keep != 'yes' ) {
 	// set global
 	global $wpdb;
 
-	// delete submissions
-	$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE post_type = 'submission'" );
-}

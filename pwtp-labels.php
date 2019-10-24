@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// initialise messages
 	$server_error_message = get_option('pwtp-setting-15');
 	$thank_you_message = get_option('pwtp-setting-16');
-	$auto_reply_message = get_option('pwtp-setting-17');
 
 	// problem label
 	$value = $problem_label;
@@ -88,14 +87,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$thank_you_message = $pwtp_atts['message_success'];
 	}
 	
-	// auto reply message
-	$value = $auto_reply_message;
-	if (empty($pwtp_atts['auto_reply_message'])) {
-		if (empty($value)) {
-			$auto_reply_message = __( 'Thank you! Your input is appreciated.', 'moj-problem-with-this-page' );
-		} else {
-			$auto_reply_message = $value;
-		}
-	} else {
-		$auto_reply_message = $pwtp_atts['auto_reply_message'];
-	}
