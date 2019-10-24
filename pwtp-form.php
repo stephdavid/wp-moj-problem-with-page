@@ -19,8 +19,8 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 	<textarea name="pwtp_problem" id="pwtp_problem" rows="20" '.(isset($error_class['form_problem']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_problem']).'</textarea>
 </div>
 <div class="form-group pwtp-improvement-group">
-	<label for="pwtp_improvement">'.esc_attr($improvement_label).' <span class="'.(isset($error_class['form_improvement']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_improvement_label).'</span></label>
-	<textarea name="pwtp_improvement" id="pwtp_improvement" rows="20" '.(isset($error_class['form_improvement']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_improvement']).'</textarea>
+	<label for="pwtp_improvement">'.esc_attr($improvement_label).'</label>
+	<textarea name="pwtp_improvement" id="pwtp_improvement" rows="20">'.esc_textarea($form_data['form_improvement']).'</textarea>
 </div>
 <div class="form-group pwtp-hide">
 	'.$pwtp_nonce_field.'
