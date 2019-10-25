@@ -30,6 +30,7 @@ if ( $keep != 'yes' ) {
 	delete_option( 'pwtp-setting-20' );
 	delete_option( 'pwtp-setting-21' );
 	delete_option( 'pwtp-setting-22' );
+	delete_option( 'pwtp-setting-222' );
 	delete_option( 'pwtp-setting-23' );
 
 	// delete site options in multisite
@@ -56,6 +57,7 @@ if ( $keep != 'yes' ) {
 	delete_site_option( 'pwtp-setting-20' );
 	delete_site_option( 'pwtp-setting-21' );
 	delete_site_option( 'pwtp-setting-22' );
+	delete_site_option( 'pwtp-setting-222' );
 	delete_site_option( 'pwtp-setting-23' );
 
 	// set global

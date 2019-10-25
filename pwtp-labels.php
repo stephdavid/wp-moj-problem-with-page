@@ -9,11 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	$submit_label = get_option('pwtp-setting-10');
 	$error_problem_label = get_option('pwtp-setting-20');
 	$error_improvement_label = get_option('pwtp-setting-12');
-
 	// initialise messages
 	$server_error_message = get_option('pwtp-setting-15');
 	$thank_you_message = get_option('pwtp-setting-16');
-
 	// problem label
 	$value = $problem_label;
 	if (empty($pwtp_atts['label_problem'])) {
@@ -38,7 +36,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$improvement_label = $pwtp_atts['label_improvement'];
 	}
-
 	// submit label
 	$value = $submit_label;
 	if (empty($pwtp_atts['label_submit'])) {
@@ -51,7 +48,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$submit_label = $pwtp_atts['label_submit'];
 	}
 	$error_problem_label = $_POST['value'] ?? '';
-
 	// error problem label
 	$value = $error_problem_label;
 	if (empty($pwtp_atts['error_problem'])) {
@@ -63,7 +59,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	} else {
 		$error_problem_label = $pwtp_atts['error_problem'];
 	}
-
 	// server error message
 	$value = $server_error_message;
 	if (empty($pwtp_atts['message_error'])) {

@@ -5,9 +5,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // Register and enqueue plugin scripts
 function pwtp_scripts() {
-    wp_register_script('wp-moj-problem-with-page-scripts', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
-    wp_register_script('wp-moj-problem-with-page-scripts', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
-    wp_enqueue_script('wp-moj-problem-with-page-scripts');
+    wp_register_script('wp-moj-problem-with-this-page-scripts', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
+    wp_register_script('wp-moj-problem-with-this-page-scripts', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
+    wp_enqueue_script('wp-moj-problem-with-this-page-scripts');
 }
 add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
 
