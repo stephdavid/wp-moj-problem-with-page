@@ -3,6 +3,16 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+if (isset($_POST['browser'])) {
+	$browser = $_POST['browser'];
+}
+
+
+if (isset($_POST['time'])) {
+	$time = $_POST['time'];
+}
+
 // shortcode for page
 function pwtp_shortcode($pwtp_atts) {
 	// attributes
@@ -23,7 +33,8 @@ function pwtp_shortcode($pwtp_atts) {
 	// initialize variables
 	$form_data = array(
 		'form_problem' => '',
-		'form_improvement' => ''
+		'form_improvement' => '',
+		'form_captcha' => ''
 	);
 	$error = false;
 	$sent = false;
@@ -34,6 +45,8 @@ function pwtp_shortcode($pwtp_atts) {
 	$anchor_setting = get_option('pwtp-setting-21');
 	// include labels
 	include 'pwtp-labels.php';
+	// captcha
+	$pwtp_rand = pwtp_random_number();
 	// set nonce field
 	$pwtp_nonce_field = wp_nonce_field( 'pwtp_nonce_action', 'pwtp_nonce', true, false );
 	// name and id of submit button
@@ -51,12 +64,17 @@ function pwtp_shortcode($pwtp_atts) {
 		$post_data = array(
 			'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
-			'prev_url' => $_POST['prev_url']
+			'prev_url' => $_POST['prev_url'],
+			'form_captcha' => sanitize_text_field($_POST['pwtp_captcha']),
+			'form_captcha_hidden' => sanitize_text_field($_POST['pwtp_captcha_hidden'])
+			//'browser' => $_POST['browser'],
+			//'time' => $_POST['time']
 		);
-		// include validation
-		include 'pwtp-validate.php';
-		// include sending and saving form submission
-		include 'pwtp-submission.php';
+		
+	// include validation
+	include 'pwtp-validate.php';
+	// include sending and saving form submission
+	include 'pwtp-submission.php';
 	}
 	// include form
 	include 'pwtp-form.php';

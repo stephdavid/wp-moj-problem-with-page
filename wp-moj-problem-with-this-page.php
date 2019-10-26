@@ -43,12 +43,37 @@ function pwtp_from_header() {
 	}
 }
 
-// get previous page user navigated from
+// create random number for page captcha
+function pwtp_random_number() {
+	$page_number = mt_rand(100, 999);
+	return $page_number;
+}
+
+// get previous page from where user navigated
 function pwtp_get_the_prev_url() {
 	if (isset($_SERVER['HTTP_REFERER']))
 	 {
 		$prev_url = $_SERVER['HTTP_REFERER'];
 		$id_block = substr($prev_url, strpos($prev_url, "?p=")+1);
+		$url = substr($id_block, 0, strpos($id_block, "/"));
+	}
+}
+// get the user's browser info
+function pwtp_get_the_user_browser() {
+	if (isset($_SERVER['HTTP_USER_AGENT']))
+	 {
+		$browser = $_SERVER['HTTP_USER_AGENT'];
+		$id_block = substr($browser, strpos($browser, "?p=")+1);
+		$url = substr($id_block, 0, strpos($id_block, "/"));
+	}
+}
+
+// get the difference in seconds between the user's timezone and GMT
+function pwtp_get_the_time() {
+	if (isset($_SERVER['REQUEST_TIME']))
+	 {
+		$time = $_SERVER['REQUEST_TIME'];
+		$id_block = substr($time, strpos($browser, "?p=")+1);
 		$url = substr($id_block, 0, strpos($id_block, "/"));
 	}
 }

@@ -7,6 +7,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (isset($_POST['prev_url'])) {
 	$prev_url = $_POST['prev_url'];
 }
+
+if (isset($_POST['browser'])) {
+	$browser = $_POST['browser'];
+}
+
+if (isset($_POST['time'])) {
+	$time = $_POST['time'];
+}
+
 // sending and saving form submission
 if ($error == false) {
 	// hook to support plugin
@@ -15,6 +24,7 @@ if ($error == false) {
 	$blog_name = htmlspecialchars_decode(get_bloginfo('name'), ENT_QUOTES);
 	// email address admin
 	$email_admin = get_option('admin_email');
+	$email_stakeholder = get_option('stakeholder_email');
 	$email_settings = get_option('pwtp-setting-22');
 	if (!empty($pwtp_atts['email_to'])) {
 		$to = $pwtp_atts['email_to'];
@@ -38,18 +48,23 @@ if ($error == false) {
 	} else {
 		$subject = $prefix;
 	}
+
+
 	// mail
 	$the_problem = $form_data['form_problem'];
 	$the_improvement = $form_data['form_improvement'];
 
 	$to = $email_admin;
-	$subject = ( "PWTP message from the $blog_name website" );
-	$content = ( "<h1>Problem with this page</h1><p>A problem has been reported by a visitor to the <strong>$blog_name</strong> website on this page: <strong>$prev_url</strong></p>" ) . 
-	sprintf( "<h2>What were you doing and what went wrong?</h2> %s ", $the_problem) .
-	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement);
+	$subject = "PWTP message from the $blog_name website" ;
+	$content = "<h1>Problem with this page</h1><p>A problem has been reported by a visitor to the <strong>$blog_name</strong> website on this page: <strong>$prev_url</strong></p>" . 
+	sprintf( "<h2>What were you doing and what went wrong?</h2> %s ", $the_problem )  .
+	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) . "<h2>Browser Data:</h2>"// . 
+	//sprintf( "<ol><li> %s ", $browser ) . "</li>" .
+	//sprintf( "<li> %s ", $timezone_offset ) . "</li></ol>"
+	;
 	$headers = "Content-Type: text/html; charset=UTF-8";
 
-	if( wp_mail(esc_attr($to), wp_strip_all_tags($subject), $content, $headers) ) {
+	if( wp_mail($to, wp_strip_all_tags($subject), $content, $headers) ) {
 		$sent = true;
 	} else {
 		$fail = true;
