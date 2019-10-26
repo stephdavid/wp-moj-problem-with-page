@@ -10,4 +10,12 @@ document.getElementById("language").value = (navigator.language)
 document.getElementById("url").value = (window.location.href)
 }
 
+var res = '<?php echo $res ?>';
+var browser = '<?php echo $browser ?>';
+var version = '<?php echo $version ?>';
+var os = '<?php echo $version ?>';
+var useragent = '<?php echo $useragent ?>';
+var language = '<?php echo $language ?>';
+
+
 
