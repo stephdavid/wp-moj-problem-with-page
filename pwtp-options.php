@@ -51,7 +51,7 @@ function pwtp_field_callback_1() {
 	<?php
 }
 function pwtp_field_callback_7() {
-	$placeholder = esc_attr__( 'What were you doing and what went wrong? (This information must be provided) Please don’t include personal or financial information like your name, National Insurance Number or credit card details', 'wp-moj-problem-with-this-page' );
+	$placeholder = esc_attr__( 'What were you doing and what went wrong? (This information must be provided)', 'wp-moj-problem-with-this-page' );
 	$value = esc_attr( get_option( 'pwtp-setting-7' ) );
 	echo "<input type='text' size='40' name='pwtp-setting-7' placeholder='$placeholder' value='$value' />";
 }

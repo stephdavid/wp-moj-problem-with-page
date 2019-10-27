@@ -11,6 +11,8 @@ function pwtp_scripts() {
 }
 add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
 
+?>'<p><em>Help us improve the experience for others. Please don’t include any personal information.</em></p>
+<?php
 // contact form
 $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 <div class="form-group pwtp-problem-group">
