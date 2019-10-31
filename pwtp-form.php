@@ -15,6 +15,7 @@ add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
 <?php
 // contact form
 $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
+
 <div class="form-group pwtp-problem-group">
 	<label for="pwtp_problem">'.$problem_label.': <span class="'.(isset($error_class['form_problem']) ? "pwtp-error" : "pwtp-hide").'" >'.$error_problem_label.'</span></label>
 	<textarea name="pwtp_problem" id="pwtp_problem" rows="10" '.(isset($error_class['form_problem']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.$form_data['form_problem'].'</textarea>
@@ -36,7 +37,6 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 </div>
 <div>
 	<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'];'">
-	<input type="hidden" id="url" name="url" value="">
 	<input type="hidden" id="browser" name="browser" value="">
 	<input type="hidden" name="version" id="version" value="">
 	<input type="hidden" id="res" name="res" value="">

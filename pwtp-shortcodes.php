@@ -66,9 +66,14 @@ function pwtp_shortcode($pwtp_atts) {
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
 			'prev_url' => $_POST['prev_url'],
 			'form_captcha' => sanitize_text_field($_POST['pwtp_captcha']),
-			'form_captcha_hidden' => sanitize_text_field($_POST['pwtp_captcha_hidden'])
-			//'browser' => $_POST['browser'],
-			//'time' => $_POST['time']
+			'form_captcha_hidden' => sanitize_text_field($_POST['pwtp_captcha_hidden']),
+			'browser' => $_POST['browser'] ?? '' ,
+			'version' => $_POST['version'] ?? '' ,
+			'res' => $_POST['res'] ?? '' ,
+			'os' => $_POST['os'] ?? '' ,
+			'useragent' => $_POST['useragent'] ?? '' ,
+			'language' => $_POST['language'] ?? '' ,
+			'timezone' => $_POST['timezone'] ?? '' 
 		);
 		
 	// include validation
