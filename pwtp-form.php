@@ -10,7 +10,8 @@ function pwtp_scripts() {
     wp_enqueue_script('wp-moj-problem-with-this-page-scripts');
 }
 add_action( 'wp_enqueue_scripts', ' add_pwtp_scripts' );
-?>'<p><em>Help us improve the experience for others. Please don’t include any personal information.</em></p>
+
+?><p><em>Help us improve the experience for others. Please don’t include any personal information.</em></p>
 <?php
 // contact form
 $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
@@ -33,10 +34,8 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 <div class="form-group pwtp-submit-group">
 	<button type="submit" name="'.$submit_name_id.'" id="'.$submit_name_id.'" class="btn btn-primary">'.$submit_label.'</button>
 </div>
-
-	<DIV>
-
-	<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'].'">
+<div>
+	<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'];'">
 	<input type="hidden" id="url" name="url" value="">
 	<input type="hidden" id="browser" name="browser" value="">
 	<input type="hidden" name="version" id="version" value="">
@@ -45,9 +44,5 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 	<input type="hidden" id="useragent" name="useragent" value="">
 	<input type="hidden" id="language" name="language" value="">
 	<input type="hidden" id="timezone" name="timezone" value="">
-
-</DIV>
-
-</form>';
-
-// $value = $_POST['value'] ?? '';
+</div>
+	</form>';

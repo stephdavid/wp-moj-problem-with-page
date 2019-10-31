@@ -3,6 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 if (isset($_POST['prev_url'])) {
 	$prev_url = $_POST['prev_url'];
 }
@@ -69,9 +70,8 @@ if ($error == false) {
 	//$to = $email_admin;
 	$subject = "PWTP message from the $blog_name website" ;
 	$content = "<h1>Problem with this page</h1><p>A problem has been reported by a visitor to the <strong>$blog_name</strong> website on this page: <strong>$prev_url</strong></p>" . 
-	
 	sprintf( "<h2>What were you doing and what went wrong?</h2> %s ", $the_problem )  .
-	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) . 
+	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) .
 	"<h2>Browser Data:</h2>
 	<ol>
 	<li>Browser: " . $browser . "</li>
