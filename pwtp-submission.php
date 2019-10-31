@@ -74,12 +74,12 @@ if ($error == false) {
 	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) .
 	"<h2>Browser Data:</h2>
 	<ol>
-	<li>Browser: " . $browser . "</li>
-	<li>Operating System: " . $os . "</li>
-	<li>Version: " . $version . "</li> 
-	<li>Language: " . $language . "</li> 
-	<li>Resolution: " . $res . "</li> 
-	<li>Timezone: " . $timezone . "</li>
+	<li>Browser: " . $browser = $_POST['browser'] ?? '' . "</li>
+	<li>Operating System: " . $os = $_POST['os'] ?? '' . "</li>
+	<li>Version: " . $version = $_POST['version'] ?? '' . "</li> 
+	<li>Language: " . $language = $_POST['language'] ?? '' . "</li> 
+	<li>Resolution: " . $res = $_POST['res'] ?? '' . "</li> 
+	<li>Timezone: " . $timezone = $_POST['timezone'] ?? '' . "</li>
 	<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li></ol>"
 	;
 	$headers = "Content-Type: text/html; charset=UTF-8";
