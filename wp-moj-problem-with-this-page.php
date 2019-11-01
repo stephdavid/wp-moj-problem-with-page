@@ -122,3 +122,108 @@ add_action('wp_footer', 'pwtp_anchor_footer');
 // include files
 include 'pwtp-shortcodes.php';
 include 'pwtp-options.php';
+
+/*
+
+// Register and enqueue plugin scripts
+function pwtp_scripts() {
+    wp_register_script('pwtp-hidden-form-elements', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
+    wp_register_script('pwtp=timezone', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
+	wp_enqueue_script('pwtp-hidden-form-elements');
+	wp_enqueue_script('pwtp-timezone');
+}
+add_action( 'wp_enqueue_scripts', 'pwtp_scripts' );
+function get_info(){
+	wp_enqueue_script('pwtp-hidden-form-elements');
+}
+
+add_action( 'wp_enqueue_scripts', 'pwtp_scripts' );
+function get_user_timezone
+(){
+	wp_enqueue_script('pwtp-hidden-form-elements');
+}
+
+do_action('')
+
+
+
+wp_register_script('pwtp-hidden-form-elements', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, false);
+wp_enqueue_scripts('pwtp-hidden-form-elements');
+add_action('gethiddenformelements', 'get_info');
+function get_info(){
+	wp_enqueue_script('pwtp-hidden-form-elements');
+}
+
+do_action('gethiddenformelements');
+
+
+wp_register_script('pwtp-timezone', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, false);
+wp_enqueue_scripts('pwtp-timezone');
+add_action( 'gettimezone', 'get_user_timezone' );
+function get_user_timezone(){
+	wp_enqueue_script('pwtp-timezone');
+}
+
+do_action('gettimezone');
+
+
+wp_enqueue_script( ‘wpls-public-js’ );`
+
+The correct way to load js is via an action:
+add_action( 'admin_enqueue_scripts', 'wpls_load_scripts' );
+
+function wpls_load_scripts() {
+
+`wp_enqueue_script( ‘wpos-slick-jquery’ );
+wp_enqueue_script( ‘wpls-public-js’ );`
+
+}
+
+
+
+
+wp_register_script('scripts', get_template_directory_uri() . '/assets/js/scripts.js', array( 'jquery' ));
+
+
+wp_enqueue_script('scripts');
+
+
+// Register and enqueue plugin scripts
+function pwtp_scripts() {
+    wp_register_script('wp-moj-problem-with-this-page-scripts', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
+    wp_register_script('wp-moj-problem-with-this-page-scripts', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
+    wp_enqueue_script('wp-moj-problem-with-this-page-scripts');
+}
+add_action( 'wp_enqueue_scripts', 'pwtp_scripts' );
+
+function my_admin_scripts() {
+  wp_enqueue_style( 'admin-css', get_stylesheet_directory_uri() . '/admin/css/admin.css' );
+  wp_enqueue_script( 'admin-js', get_stylesheet_directory_uri() . '/admin/js/admin.js', true );
+}
+add_action( 'admin_enqueue_scripts', 'my_admin_scripts' );
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+/*
+wp_register_script( 'pluginMain', plugins_url( 	'/js/pluginMain.js', __FILE__ ) );
+
+add_action('loadmyscripthereplz', 'somefunction');
+function somefunction(){
+	wp_enqueue_script('pluginMain');
+}
+
+do_action('loadmyscripthereplz');
+
+*/
+
+

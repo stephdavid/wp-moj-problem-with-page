@@ -74,14 +74,10 @@ if ($error == false) {
 	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) .
 	"<h2>Browser Data:</h2>
 	<ol>
-	<li>Browser: " . $browser = $_POST['browser'] ?? '' . "</li>
-	<li>Operating System: " . $os = $_POST['os'] ?? '' . "</li>
-	<li>Version: " . $version = $_POST['version'] ?? '' . "</li> 
-	<li>Language: " . $language = $_POST['language'] ?? '' . "</li> 
-	<li>Resolution: " . $res = $_POST['res'] ?? '' . "</li> 
-	<li>Timezone: " . $timezone = $_POST['timezone'] ?? '' . "</li>
-	<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li></ol>"
-	;
+	<li>Timezone: " . $_SERVER['REQUEST_TIME'] . "</li>
+	<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li>
+	</ol>";
+
 	$headers = "Content-Type: text/html; charset=UTF-8";
 	if( wp_mail($to, wp_strip_all_tags($subject), $content, $headers) ) {
 		$sent = true;
@@ -89,3 +85,14 @@ if ($error == false) {
 		$fail = true;
 	}
 }
+
+/*
+<ol>
+<li>Browser: " . $browser = $_POST['browser'] . "</li>
+<li>Operating System: " . $os = $_POST['os'] . "</li>
+<li>Version: " . $version = $_POST['version'] . "</li> 
+<li>Language: " . $language = $_POST['language'] . "</li> 
+<li>Resolution: " . $res = $_POST['res'] . "</li> 
+<li>Timezone: " . $timezone = $_POST['timezone'] . "</li>
+<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li></ol>"
+*/
