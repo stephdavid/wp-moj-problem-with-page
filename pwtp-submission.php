@@ -88,11 +88,8 @@ if ($error == false) {
 	<p>" . $form_data['form_problem'] . "</p>
 	<h2>What could we improve?</h2>
 	<p>" . $form_data['form_improvement'] . "</p>
-	<h2>Browser Data:</h2>
-	<ol>
-	<li>Timestamp (should be Timezone): " . $_SERVER['REQUEST_TIME'] . "</li>
-	<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li>
-	</ol>";
+	<h2>Browser Data</h2>
+	<p>User Agent:	" . $_SERVER['HTTP_USER_AGENT'] . "</p>";
 	$headers = "Content-Type: text/html; charset=UTF-8";
 
 	if( wp_mail(esc_attr($to), wp_strip_all_tags($subject), $content, $headers) ) {
@@ -104,6 +101,10 @@ if ($error == false) {
 
 
 /*
+
+<li>Timestamp (should be Timezone): " . $_SERVER['REQUEST_TIME'] . "</li>
+
+
 <ol>
 <li>Browser: " . $browser = $_POST['browser'] . "</li>
 <li>Operating System: " . $os = $_POST['os'] . "</li>

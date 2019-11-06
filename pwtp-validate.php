@@ -23,9 +23,8 @@ $form_data['form_problem'] = $value;
 
 // validate improvement
 $value = stripslashes($post_data['form_improvement']);
-if ( strlen($value)<10 ) {
-	$error_class['form_improvement'] = true;
-	$error = true;
+if ( strlen($value)>=0 ) {
+	$error_class['form_improvement'] = false;
+	$error = false;
 }
 $form_data['form_improvement'] = $value;
-

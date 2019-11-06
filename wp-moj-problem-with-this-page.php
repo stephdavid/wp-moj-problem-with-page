@@ -32,22 +32,6 @@ function pwtp_action_links ( $links ) {
 }
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'pwtp_action_links' );
 
-// create from email header
-function pwtp_from_header() {
-	if ( !isset( $from_email ) ) {
-		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
-		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
-			$sitename = substr( $sitename, 4 );
-		}
-		return 'wordpress@' . $sitename;
-	}
-}
-
-// create random number for page captcha
-function pwtp_random_number() {
-	$page_number = mt_rand(100, 999);
-	return $page_number;
-}
 
 // get previous page from where user navigated
 function pwtp_get_the_prev_url() {
@@ -76,6 +60,23 @@ function pwtp_get_the_time() {
 		$id_block = substr($time, strpos($browser, "?p=")+1);
 		$url = substr($id_block, 0, strpos($id_block, "/"));
 	}
+}
+
+// create from email header
+function pwtp_from_header() {
+	if ( !isset( $from_email ) ) {
+		$sitename = strtolower( $_SERVER['SERVER_NAME'] );
+		if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+			$sitename = substr( $sitename, 4 );
+		}
+		return 'wordpress@' . $sitename;
+	}
+}
+
+// create random number for page captcha
+function pwtp_random_number() {
+	$page_number = mt_rand(100, 999);
+	return $page_number;
 }
 
 // redirect if sending succeeded
@@ -123,9 +124,52 @@ add_action('wp_footer', 'pwtp_anchor_footer');
 include 'pwtp-shortcodes.php';
 include 'pwtp-options.php';
 
-/*
+//Register and enqueue plugin scripts
+function pwtp_scripts() {
+    wp_register_script('pwtp-hidden-form-elements', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
+    wp_register_script('pwtp=timezone', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
+	wp_enqueue_script('pwtp-hidden-form-elements');
+	wp_enqueue_script('pwtp-timezone');
+}
+add_action( 'wp_enqueue_scripts', 'pwtp_scripts' );
+function get_info(){
+	wp_enqueue_script('pwtp-hidden-form-elements');
+}
 
-// Register and enqueue plugin scripts
+add_action( 'wp_enqueue_scripts', 'pwtp_scripts' );
+function get_user_timezone(){
+	wp_enqueue_script('pwtp-timezone');
+}
+
+
+
+
+
+/*
+/**
+* Initialization. Add our script to the PWTP page.
+
+function pbd_alp_init() {
+	global $wp_query;
+
+	// Add code to index pages.
+	if( is_page( 'Problem with this page' ) {	
+		// Queue JS
+		wp_enqueue_script(
+			'pbd-alp-load-posts',
+			plugin_dir_url( __FILE__ ) . 'js/load-posts.js',
+			array('jquery'),
+			'1.0',
+			true
+		);
+	}
+
+
+
+
+
+
+Register and enqueue plugin scripts
 function pwtp_scripts() {
     wp_register_script('pwtp-hidden-form-elements', plugins_url( '/assets/js/get-hidden-form-elements-variables.js', __FILE__ ), array(), false, true);
     wp_register_script('pwtp=timezone', plugins_url( '/assets/js/get-user-timezone.js', __FILE__ ), array(), false, true);
