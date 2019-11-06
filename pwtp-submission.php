@@ -52,7 +52,7 @@ if ($error == false) {
 		}
 	}
 	// from email header
-	$from = $pwtp_atts['from_header'];
+	//$from = $pwtp_atts['from_header'];
 	// subject
 	if (!empty($pwtp_atts['prefix_subject'])) {
 		$prefix = $pwtp_atts['prefix_subject'];
@@ -61,30 +61,47 @@ if ($error == false) {
 	}
 	if (!empty($pwtp_atts['subject'])) {
 		$subject = $pwtp_atts['subject'];
-	} else {
+	} //elseif ($subject_setting != "yes") {
+				//$subject = "(".$prefix.") " . $form_data['form_subject'];
+			//} 
+	else {
 		$subject = $prefix;
 	}
+	// auto reply message
+	//$reply_message = htmlspecialchars_decode($auto_reply_message, ENT_QUOTES);
+
+	// save form submission in database
+	if ($list_submissions_setting == "yes") {
+		$pwtp_post_information = array(
+			'post_title' => wp_strip_all_tags($subject),
+			'post_content' => $form_data['problem'] . "\r\n\r\n" . $form_data['improvement'] . "\r\n\r\n",
+			'post_type' => 'submission',
+			'post_status' => 'pending',
+			'meta_input' => array( "name_sub" => $form_data['form_problem'], "email_sub" => $form_data['form_improvement'] )
+		);
+	$post_id = wp_insert_post($pwtp_post_information);
+	}
 	// mail
-	$the_problem = $form_data['form_problem'];
-	$the_improvement = $form_data['form_improvement'];
-	//$to = $email_admin;
 	$subject = "PWTP message from the $blog_name website" ;
-	$content = "<h1>Problem with this page</h1><p>A problem has been reported by a visitor to the <strong>$blog_name</strong> website on this page: <strong>$prev_url</strong></p>" . 
-	sprintf( "<h2>What were you doing and what went wrong?</h2> %s ", $the_problem )  .
-	sprintf( "<h2>What could we improve?</h2> %s ", $the_improvement ) .
-	"<h2>Browser Data:</h2>
+	$content = "<h1>Problem with this page</h1><p>A problem has been reported by a visitor to the <strong>$blog_name</strong> website on this page: <strong>$prev_url</strong></p> 
+	<h2>What were you doing and what went wrong?</h2>
+	<p>" . $form_data['form_problem'] . "</p>
+	<h2>What could we improve?</h2>
+	<p>" . $form_data['form_improvement'] . "</p>
+	<h2>Browser Data:</h2>
 	<ol>
-	<li>Timezone: " . $_SERVER['REQUEST_TIME'] . "</li>
+	<li>Timestamp (should be Timezone): " . $_SERVER['REQUEST_TIME'] . "</li>
 	<li>User Agent: " . $_SERVER['HTTP_USER_AGENT'] . "</li>
 	</ol>";
-
 	$headers = "Content-Type: text/html; charset=UTF-8";
-	if( wp_mail($to, wp_strip_all_tags($subject), $content, $headers) ) {
+
+	if( wp_mail(esc_attr($to), wp_strip_all_tags($subject), $content, $headers) ) {
 		$sent = true;
 	} else {
 		$fail = true;
 	}
 }
+
 
 /*
 <ol>

@@ -19,17 +19,19 @@ function pwtp_shortcode($pwtp_atts) {
 	$pwtp_atts = shortcode_atts(array(
 		'class' => 'pwtp-container',
 		'email_to' => '',
-		'from_header' => pwtp_from_header(),
-		'prefix_problem' => '',
+		//'from_header' => pwtp_from_header(),
+		//'prefix_problem' => '',
+		'improvement' => '',
 		'problem' => '',
 		'label_problem' => '',
 		'label_improvement' => '',
 		'label_submit' => '',
 		'error_problem' => '',
-		'error_message' => '',
+		'error_improvement' => '',
 		'message_success' => '',
 		'message_error' => ''
 	), $pwtp_atts);
+
 	// initialize variables
 	$form_data = array(
 		'form_problem' => '',
@@ -64,7 +66,6 @@ function pwtp_shortcode($pwtp_atts) {
 		$post_data = array(
 			'form_problem' => sanitize_textarea_field($_POST['pwtp_problem']),
 			'form_improvement' => sanitize_textarea_field($_POST['pwtp_improvement']),
-			'prev_url' => $_POST['prev_url'],
 			'form_captcha' => sanitize_text_field($_POST['pwtp_captcha']),
 			'form_captcha_hidden' => sanitize_text_field($_POST['pwtp_captcha_hidden']),
 			'browser' => $_POST['browser'] ?? '' ,
