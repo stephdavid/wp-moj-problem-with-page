@@ -4,31 +4,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (isset($_POST['os'])) {
-	$os = $_POST['os'];
-}
-
-if (isset($_POST['language'])) {
-	$language = $_POST['language'];
-}
-
-if (isset($_POST['res'])) {
-	$res = $_POST['res'];
-}
-
-if (isset($_POST['timezone'])) {
-	$timezone = $_POST['timezone'];
-}
-
 ?><p><em>Help us improve the experience for others. Please don’t include any personal information.</em></p>
 <?php
-$email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
+
+$email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post"  onsubmit="getinfo()">
 <div class="form-group pwtp-problem-group">
 	<label for="pwtp_problem">'.esc_attr($problem_label).': <span class="'.(isset($error_class['form_problem']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_problem_label).'</span></label>
 	<textarea name="pwtp_problem" id="pwtp_problem" rows="10" '.(isset($error_class['form_problem']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_problem']).'</textarea>
 </div>
 <div class="form-group pwtp-improvement-group">
-	<label for="pwtp_improvement">'.esc_attr($improvement_label).': <span class="'.(isset($error_class['form_improvement']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_improvement_label).'</span></label>
+	<label for="pwtp_improvement">'.esc_attr($improvement_label).' <span class="'.(isset($error_class['form_improvement']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_improvement_label).'</span></label>
 	<textarea name="pwtp_improvement" id="pwtp_improvement" rows="10" '.(isset($error_class['form_improvement']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_improvement']).'</textarea>
 </div>
 <div class="form-group pwtp-captcha-group">
@@ -43,8 +28,5 @@ $email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 <div class="form-group pwtp-submit-group">
 	<button type="submit" name="'.$submit_name_id.'" id="'.$submit_name_id.'" class="btn btn-primary">'.$submit_label.'</button>
 </div>
-<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'];'">
-<input type="hidden" id="browser" name="browser" value="'.$_SERVER['HTTP_USER_AGENT'];'">
-<input type="hidden" id="time" name="time" value="'.$_SERVER['REQUEST_TIME'];'">
-
+<input type="hidden" id="prev_url" name="prev_url" value="'.$_SERVER['HTTP_REFERER'].'">
 </form>';

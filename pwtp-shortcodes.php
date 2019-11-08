@@ -4,23 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if (isset($_POST['browser'])) {
-	$browser = $_POST['browser'];
-}
-
-
-if (isset($_POST['time'])) {
-	$time = $_POST['time'];
-}
-
 // shortcode for page
 function pwtp_shortcode($pwtp_atts) {
 	// attributes
 	$pwtp_atts = shortcode_atts(array(
 		'class' => 'pwtp-container',
 		'email_to' => '',
-		//'from_header' => pwtp_from_header(),
-		//'prefix_problem' => '',
 		'improvement' => '',
 		'problem' => '',
 		'label_problem' => '',
@@ -31,19 +20,24 @@ function pwtp_shortcode($pwtp_atts) {
 		'message_success' => '',
 		'message_error' => ''
 	), $pwtp_atts);
-
 	// initialize variables
 	$form_data = array(
 		'form_problem' => '',
 		'form_improvement' => '',
-		'form_captcha' => ''
+		'form_captcha' => '',
+		'browser' => '',
+		'version' => '',
+		'res' => '',
+		'os' => '',
+		'useragent' => '',
+		'language' => ''
+
 	);
 	$error = false;
 	$sent = false;
 	$fail = false;
-
 	// initialise settings
-	$list_submissions_setting = get_option('pwtp-setting-2');
+	//$list_submissions_setting = get_option('pwtp-setting-2');
 	$anchor_setting = get_option('pwtp-setting-21');
 	// include labels
 	include 'pwtp-labels.php';

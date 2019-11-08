@@ -11,14 +11,14 @@ add_action( 'admin_menu', 'pwtp_menu_page' );
 // add admin settings
 function pwtp_admin_init() {
 	add_settings_section( 'pwtp-general-section', esc_attr__( 'Admin', 'wp-moj-problem-with-this-page' ), '', 'pwtp-general' );
-	add_settings_field( 'pwtp-field-5', esc_attr__( 'Administrator Name', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_5', 'pwtp-general', 'pwtp-general-section' );
-	register_setting( 'pwtp-general-options', 'pwtp-setting-5', array('sanitize_callback' => 'sanitize_key') );
+	//add_settings_field( 'pwtp-field-5', esc_attr__( 'Administrator Name', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_5', 'pwtp-general', 'pwtp-general-section' );
+	//register_setting( 'pwtp-general-options', 'pwtp-setting-5', array('sanitize_callback' => 'sanitize_key') );
 	add_settings_field( 'pwtp-field-22', esc_attr__( 'Administrator Email', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_22', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting-22', array('sanitize_callback' => 'sanitize_email') );
-	add_settings_field( 'pwtp-field-55', esc_attr__( 'Stakeholder Name', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_55', 'pwtp-general', 'pwtp-general-section' );
-	register_setting( 'pwtp-general-options', 'pwtp-setting-55', array('sanitize_callback' => 'sanitize_key') );
-	add_settings_field( 'pwtp-field-222', esc_attr__( 'Stakeholder Email', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_222', 'pwtp-general', 'pwtp-general-section' );
-	register_setting( 'pwtp-general-options', 'pwtp-setting-222', array('sanitize_callback' => 'sanitize_email') );
+	//add_settings_field( 'pwtp-field-55', esc_attr__( 'Stakeholder Name', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_55', 'pwtp-general', 'pwtp-general-section' );
+	//register_setting( 'pwtp-general-options', 'pwtp-setting-55', array('sanitize_callback' => 'sanitize_key') );
+	//add_settings_field( 'pwtp-field-222', esc_attr__( 'Stakeholder Email', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_222', 'pwtp-general', 'pwtp-general-section' );
+	//register_setting( 'pwtp-general-options', 'pwtp-setting-222', array('sanitize_callback' => 'sanitize_email') );
 	add_settings_field( 'pwtp-field-1', esc_attr__( 'Uninstall', 'wp-moj-problem-with-this-page' ), 'pwtp_field_callback_1', 'pwtp-general', 'pwtp-general-section' );
 	register_setting( 'pwtp-general-options', 'pwtp-setting', array('sanitize_callback' => 'sanitize_key') );
 }
