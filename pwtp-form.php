@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?><p><em>Help us improve the experience for others. Please don’t include any personal information.</em></p>
 <?php
 
-$email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post"  onsubmit="getinfo()">
+$email_form = '<form id="pwtp" class="'.$pwtp_atts['class'].'" method="post">
 <div class="form-group pwtp-problem-group">
 	<label for="pwtp_problem">'.esc_attr($problem_label).': <span class="'.(isset($error_class['form_problem']) ? "pwtp-error" : "pwtp-hide").'" >'.esc_attr($error_problem_label).'</span></label>
 	<textarea name="pwtp_problem" id="pwtp_problem" rows="10" '.(isset($error_class['form_problem']) ? ' class="form-control pwtp-error"' : ' class="form-control"').'>'.esc_textarea($form_data['form_problem']).'</textarea>
